@@ -31,6 +31,8 @@ Make sure you have the following packages installed before executing the files i
 
 ```bash
    pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+   pip install secure-smtplib
+   pip install email
 ```
 
 </h2><ins>Setup </ins></h2>
