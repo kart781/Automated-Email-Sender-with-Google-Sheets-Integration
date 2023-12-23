@@ -12,11 +12,11 @@ smtp_port = 587                 # Standard secure SMTP port
 smtp_server = "smtp.gmail.com"  # Google SMTP Server
 
 # Set up the email lists
-email_from = "karthikram781@gmail.com"
+email_from = "youremail.com"
 email_list = values
 
 # Define the password (better to reference externally)
-pswd = "etfrddwagddapxiq" # As shown in the video this password is now dead, left in as example only
+pswd = "password" # As shown in the video this password is now dead, left in as example only
 
 
 # name the email subject
@@ -39,7 +39,7 @@ def send_emails(email_list):
         # Attach the body of the message
         msg.attach(MIMEText(body, 'plain'))
 
-        path = r'C:\Users\karth\Downloads\Digital Portfolio.pdf'
+        path = r'Your Path'
         extension = 'csv'
         os.chdir(path)
 

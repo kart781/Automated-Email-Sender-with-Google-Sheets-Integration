@@ -7,7 +7,7 @@ from googleapiclient.errors import HttpError
 
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
-SPREADSHEET_ID = "1WkCiSSnahQwz1uE8HMckrLdZ-025JC_G5JxFPF-Iuns"
+SPREADSHEET_ID = "Your ID"
 
 credentials = None
 if os.path.exists("token.json"):
