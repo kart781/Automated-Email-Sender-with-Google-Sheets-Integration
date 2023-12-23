@@ -7,7 +7,7 @@ from googleapiclient.errors import HttpError
 
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
-SPREADSHEET_ID = "1WkCiSSnahQwz1uE8HMckrLdZ-025JC_G5JxFPF-Iuns"
+SPREADSHEET_ID = "Your Google Sheets ID"
 
 credentials = None
 if os.path.exists("token.json"):
@@ -16,7 +16,7 @@ if not credentials or not credentials.valid:
     if credentials and credentials.expired and credentials.refresh_token:
         credentials.refresh(Request())
     else:
-        flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
+        flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES) #Get your credentials from the Google Developer Console in the form of a JSON File
         credentials = flow.run_local_server(port=0)
     with open("token.json", "w") as token:
         token.write(credentials.to_json())
