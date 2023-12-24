@@ -99,7 +99,7 @@ To send an email with data extracted from Google Sheets:
 To use the program just call the following command in the terminal
 
 ```bash
-   main.py
+   python main.py
 ```
 
 </h2><ins>Additional Resources </ins></h2>
