@@ -5,10 +5,10 @@
 
 This project consists of two main components: a Python script for extracting data from a specific column in a Google Sheets document, and another Python script that uses smtplib to send out an email notification, potentially with the extracted data.
 
-This google_sheets_extractors.py script is useful for automating the process of data extraction from Google Sheets, and it can be integrated into larger Python applications where data from a spreadsheet needs to be processed or analyzed. Remember, for the script to work, you need to have credentials.json from the Google Developer Console, and you must have access to the specified Google Sheets document.
+This [google_sheets_extractors.py](#Setup) script is useful for automating the process of data extraction from Google Sheets, and it can be integrated into larger Python applications where data from a spreadsheet needs to be processed or analyzed. Remember, for the script to work, you need to have credentials.json from the Google Developer Console, and you must have access to the specified Google Sheets document.
 
 
-Your email_notifier.py script is designed to send emails with an attachment to a list of recipients obtained from a Google Sheets document. The script uses the smtplib and email libraries for creating and sending emails. 
+Your [email_notifier.py](#Setup) script is designed to send emails with an attachment to a list of recipients obtained from a Google Sheets document. The script uses the smtplib and email libraries for creating and sending emails. 
 <br/>
 </h2><ins>Prerequisites </ins></h2>
 <br/>
