@@ -1,82 +1,50 @@
 import smtplib
+import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
-import os
-import glob
-from google_sheets_extractor import values
-
 
 smtp_port = 587                 # Standard secure SMTP port
 smtp_server = "smtp.gmail.com"  # Google SMTP Server
 
 # Set up the email lists
-email_from = "youremail.com"
-email_list = values
+email_from = "yourmail@gmail.com"
+password = "Your Password" # Replace with your actual password
 
-# Define the password (better to reference externally)
-pswd = "password" # As shown in the video this password is now dead, left in as example only
+# Define the email function
+def send_emails(email_list, subject, body, attachment_path):
+    # Connect with the server
+    with smtplib.SMTP(smtp_server, smtp_port) as server:
+        server.starttls()
+        server.login(email_from, password)
 
+        for recipient in email_list:
+            # Create MIME object
+            msg = MIMEMultipart()
+            msg['From'] = email_from
+            msg['To'] = recipient
+            msg['Subject'] = subject
 
-# name the email subject
-subject = "Test Subject"
+            # Email body
+            body = body
+            msg.attach(MIMEText(body, 'plain'))
 
-# Define the email function (dont call it email!)
-def send_emails(email_list):
+            # Attach file
+            try:
+                with open(attachment_path, 'rb') as attachment:
+                    part = MIMEBase('application', 'octet-stream')
+                    part.set_payload(attachment.read())
+                    encoders.encode_base64(part)
+                    part.add_header('Content-Disposition', f"attachment; filename={os.path.basename(attachment_path)}")
+                    msg.attach(part)
+            except Exception as e:
+                print(f"An error occurred: {e}")
+                continue
 
-    for person in email_list:
-
-        # Make the body of the email
-        body = f"""Test Body"""
-
-        # make a MIME object to define parts of the email
-        msg = MIMEMultipart()
-        msg['From'] = email_from
-        msg['To'] = person
-        msg['Subject'] = subject
-
-        # Attach the body of the message
-        msg.attach(MIMEText(body, 'plain'))
-
-        path = r'Your Path'
-        extension = 'csv'
-        os.chdir(path)
-
-        # Define the file to attach
-        filename = glob.glob('*.{}'.format(extension))
-
-        for name in filename:
-            attachment = open(name, 'rb')  # r for read and b for binary
-
-            # Encode as base 64
-            attachment_package = MIMEBase('application', 'octet-stream')
-            attachment_package.set_payload((attachment).read())
-            encoders.encode_base64(attachment_package)
-            attachment_package.add_header('Content-Disposition', "attachment; filename= " + name)
-            msg.attach(attachment_package)
-
-            # Cast as string
-            text = msg.as_string()
-
-        # Connect with the server
-        print("Connecting to server...")
-        TIE_server = smtplib.SMTP(smtp_server, smtp_port)
-        TIE_server.starttls()
-        TIE_server.login(email_from, pswd)
-        print("Succesfully connected to server")
-        print()
-
-
-        # Send emails to "person" as list is iterated
-        print(f"Sending email to: {person}...")
-        TIE_server.sendmail(email_from, person, text)
-        print(f"Email sent to: {person}")
-        print()
-
-    # Close the port
-    TIE_server.quit()
-
-
-# Run the function
-send_emails(email_list)
+            # Send email
+            try:
+                server.sendmail(email_from, recipient, msg.as_string())
+                print(f"Email sent to: {recipient}")
+            except Exception as e:
+                print(f"Failed to send email to {recipient}: {e}")
