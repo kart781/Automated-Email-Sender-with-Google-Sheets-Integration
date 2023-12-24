@@ -71,6 +71,12 @@ This script sends an email using smtplib. To use this script:
 <br/>
 <br/>
 
+To use the program just call the following command in the terminal
+
+```bash
+   python email_notifier.py
+```
+
 **Extract Data from Google Sheets:** 
 
 - Run google_sheets_extractor.py.
