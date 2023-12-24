@@ -70,13 +70,6 @@ This script sends an email using smtplib. To use this script:
 </h2><ins>Usage </ins></h2>
 <br/>
 <br/>
-
-To use the program just call the following command in the terminal
-
-```bash
-   python email_notifier.py
-```
-
 **Extract Data from Google Sheets:** 
 
 - Run google_sheets_extractor.py.
@@ -86,6 +79,28 @@ To use the program just call the following command in the terminal
 
 - Use email_notifier.py to send an email.
 - Integrate it with google_sheets_extractor.py to send the extracted data via email, if needed.
+
+</h2><ins>Example </ins></h2>
+<br/>
+<br/>
+
+
+To send an email with data extracted from Google Sheets:
+
+```python
+   # In your main script
+   import google_sheets_extractor
+   import email_notifier
+
+   data = google_sheets_extractor.get_column_data()  # Ensure this function is defined to return data
+   email_notifier.send_email("Subject: Data Extracted", f"Extracted Data:\n{data}")
+```
+
+To use the program just call the following command in the terminal
+
+```bash
+   main.py
+```
 
 </h2><ins>Additional Resources </ins></h2>
 <br/>
