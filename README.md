@@ -1,4 +1,4 @@
-﻿<h1>Mail Automation </h1>
+﻿<h1> Automated Email Sender with Google Sheets Integration </h1>
 
 </h2><ins>Overview </ins></h2><br/>
 <br/>
