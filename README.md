@@ -70,6 +70,7 @@ This script sends an email using smtplib. To use this script:
 </h2><ins>Usage </ins></h2>
 <br/>
 <br/>
+
 **Extract Data from Google Sheets:** 
 
 - Run google_sheets_extractor.py.
