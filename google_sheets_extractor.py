@@ -4,12 +4,27 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+import re
+from file_selector import link
 
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
-SPREADSHEET_ID = "Your ID"
 
 def get_column_data():
+
+    
+    pattern = r'd/([a-zA-Z0-9_-]+)/'
+    match = re.search(pattern, link)
+
+    SPREADSHEET_ID = None
+    if match:
+        SPREADSHEET_ID = match.group(1)
+
+    # At this point, SPREADSHEET_ID will either contain the extracted ID or None
+    if SPREADSHEET_ID:
+        print("Document ID:", SPREADSHEET_ID)
+    else:
+        print("No valid document ID found in the URL.")
     
     credentials = None
     if os.path.exists("token.json"):
@@ -25,7 +40,7 @@ def get_column_data():
 
     try:
         service = build("sheets", "v4", credentials=credentials)
-        sheets = service.spreadsheets()
+        sheets = service.spreadsheets() 
 
         result = sheets.values().get(spreadsheetId=SPREADSHEET_ID, range="Sheet1!C:C").execute()
 
@@ -36,3 +51,5 @@ def get_column_data():
 
     except HttpError as error:
         print(error)
+
+get_column_data()

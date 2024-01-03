@@ -1,7 +1,7 @@
 import os
-import google_sheets_extractor
 import email_notifier
 from file_selector import file_path
+import google_sheets_extractor
 
 data = google_sheets_extractor.get_column_data()
 test_recipient = data
