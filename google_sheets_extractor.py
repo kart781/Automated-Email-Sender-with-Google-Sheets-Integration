@@ -40,16 +40,15 @@ def get_column_data():
 
     try:
         service = build("sheets", "v4", credentials=credentials)
-        sheets = service.spreadsheets() 
+        sheets = service.spreadsheets()
 
         result = sheets.values().get(spreadsheetId=SPREADSHEET_ID, range="Sheet1!C:C").execute()
 
         values = result.get("values")
         values = [item for sublist in values for item in sublist]
-        values = values[1:]
+        
+        # values = values[1:]
         return values
-
+        
     except HttpError as error:
         print(error)
-
-get_column_data()
