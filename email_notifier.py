@@ -9,8 +9,8 @@ smtp_port = 587                 # Standard secure SMTP port
 smtp_server = "smtp.gmail.com"  # Google SMTP Server
 
 # Set up the email lists
-email_from = "karthikram781@gmail.com"
-password = "etfrddwagddapxiq" # Replace with your actual password
+email_from = "kommidirithwik@gmail.com"
+password = "ekbvrggeirgsanjd" # Replace with your actual password
 
 # Define the email function
 def send_emails(email_list, subject, body, attachment_path):
